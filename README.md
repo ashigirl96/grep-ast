@@ -13,6 +13,29 @@ export const animal = {
     cat: 'cute',
     you: '...',
 };
+
+$ node dist/cli.js --patterns animal.txt 'VariableDeclarator:has([name="animal"]) > ObjectExpression[properties] > ObjectProperty[key] > Identifier[name]' | jq
+✔
+[
+  {
+    "type": "Identifier",
+    "start": 28,
+    "end": 31,
+    "loc": {
+      "start": {
+        "line": 2,
+        "column": 4
+      },
+      "end": {
+        "line": 2,
+        "column": 7
+      },
+      "identifierName": "dog"
+    },
+    "name": "dog"
+  },
+...
+
 $ node dist/cli.js --patterns animal.txt 'VariableDeclarator:has([name="animal"]) > ObjectExpression[properties] > ObjectProperty[key] > Identifier[name]' 1| jq '.[].name'
 ✔
 "dog"
