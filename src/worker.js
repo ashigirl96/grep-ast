@@ -18,7 +18,7 @@ exports.processFile = async (
   argv: Argv
 ): Promise<Array<Result>> => {
   const options = parseArgv(argv);
-  const { encoding, parser, parserOptions, selector, getLoc } = options;
+  const { encoding, parser, parserOptions, selector } = options;
 
   let contents;
   try {
@@ -64,12 +64,5 @@ exports.processFile = async (
     ];
   }
 
-  return nodes.map((node) => {
-    return {
-      filepath,
-      error: false,
-      loc: getLoc(node),
-      contents,
-    };
-  });
+  return nodes;
 };
